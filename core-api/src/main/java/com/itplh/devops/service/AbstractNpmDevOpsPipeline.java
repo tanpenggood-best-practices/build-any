@@ -13,7 +13,7 @@ public abstract class AbstractNpmDevOpsPipeline extends AbstractDevOpsPipeline {
     @Override
     public void build() throws IOException {
         // npm install & npm run build
-        String command = "cd ${parentPomDir} && ${npm} install && ${npm} run ${buildScript}";
+        String command = "cd ${parentPomDir} && ${npm} config set scripts-prepend-node-path true && ${npm} install && ${npm} run ${buildScript}";
         Properties buildProperties = getBuildProperties();
         command = PropertyParser.parse(command, buildProperties);
         CommandUtil.executeCommand(command);
